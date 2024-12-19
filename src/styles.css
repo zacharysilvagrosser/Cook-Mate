@@ -21,10 +21,18 @@
 }
 
 .recipe-box {
-    width: 100%;
-    margin: 1rem;
+    width: 20%;
 }
 
 ul {
     list-style: none;
+}
+
+#discover-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }

@@ -7,31 +7,29 @@
 // Once Img box is clicked, open page with new fetch request for Recipe Information with recipe ID and get more info
 // Equipment pictures, Taste breakdown, Price, Ingredients, Nutrition
 
-import { useState} from "react";
+import {useState} from "react";
 import Filters from "./Filters";
+import DiscoverSearchBar from "./DiscoverSearchBar";
+import RecipeBox from "./RecipeBox";
 
 function DiscoverRecipes() {
     const [data, setData] = useState(null);
+    const [page, setPage] = useState(0);
     const [cuisine, setCuisine] = useState([]);
-    const fetchRecipes = async (newInput) => {
-        const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${newInput}&cuisine=${cuisine}&number=100&apiKey=${process.env.REACT_APP_API_KEY}`);
-        const jsonData = await response.json();
-        console.log(jsonData);
-        setData(jsonData);
+
+    // fetch the correct recipes for the new page based on what search type was already clicked
+    function nextPage() {
+        setPage(page + 100);
     }
-    const fetchRandomRecipes = async () => {
-        const response = await fetch(`https://api.spoonacular.com/recipes/random?number=100&apiKey=${process.env.REACT_APP_API_KEY}`);
-        const jsonData = await response.json();
-        console.log(jsonData);
-        setData(jsonData);
-    }
+
     return (
-        <div>
+        <div id='discover-container'>
             <Filters cuisine={cuisine} setCuisine={setCuisine}/>
-            <input id='discover-search' type='text' playerholder='Enter a recipe...'></input>
-            <button id='discover-search-button' onClick={() => fetchRecipes((document.getElementById('discover-search').value))}>Search</button>
-            <button onClick={fetchRandomRecipes}>Random</button>
-            <button onClick={fetchRandomRecipes}>Reccommened</button>
+            <DiscoverSearchBar page={page} setPage={setPage} data={data} setData={setData} cuisine={cuisine}/>
+            {data && data.map((item, index) => (
+                <RecipeBox item={item} key={index}/>
+            ))}
+            <button onClick={nextPage}>Next Page</button>
         </div>
     )
 }
