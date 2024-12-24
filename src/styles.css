@@ -1,5 +1,14 @@
+:root {
+    --wine-color: rgb(32, 17, 23);
+    --grass-color: rgb(35, 39, 27);
+}
 * {
     margin: 0;
+    color: white;
+}
+#root {
+    background-color: var(--grass-color);
+    /*    background-color: rgb(29, 34, 16);*/
 }
 #nav {
     width: 100%;
@@ -14,25 +23,117 @@
     justify-content: space-around;
     padding: 1rem 0;
     font-size: 24px;
-    background-color: rgb(140, 140, 145);
+    background-color: var(--wine-color);
 }
 #nav-items a {
     text-decoration: none;
 }
 
-.recipe-box {
-    width: 20%;
-}
-
 ul {
     list-style: none;
 }
+button, select {
+    background-color: var(--wine-color);
+}
 
 #discover-container {
-    width: 100%;
-    height: 100vh;
+    width: 96%;
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+#discover-container h1 {
+    margin: 2rem;
+    font-size: 3rem;
+}
+
+#discover-search-bar {
+    width: 100%;
+}
+#discover-search {
+    color: black;
+    font-size: 14px;
+}
+#discover-search-div {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+#discover-search-button {
+    padding: 8px;
+    cursor: pointer;
+    background-color: var(--wine-color);
+}
+#discover-search-bar input {
+    width: 100%;
+    padding: 6px;
+}
+#discover-search-bar button {
+    width: 8rem;
+    font-size: 15px;
+    padding: 6px;
+    border: 1px solid black;
+}
+#discover-bottom-search-buttons {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 10px;
+}
+#sorting {
+    width: 97%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0;
+}
+#sorting select {
+    margin-left: 4px;
+}
+#recipe-section-container {
+    width: 100%;
+    display: flex;
+}
+#recipe-box-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.recipe-box {
+    width: 18rem;
+    padding: 1rem;
+    transition: .3s;
+}
+.recipe-box:hover {
+    transform: scale(104%);
+    transition: .3s;
+}
+.recipe-box img {
+    width: 100%;
+    height: auto;
+}
+
+#filters {
+    margin: 0 0 0 2rem;
+    text-align: left;
+}
+#filters h3 {
+    font-size: 26px;
+    margin: 6px 0;
+}
+#filters div ul {
+    padding: 0;
+}
+#filters div ul li {
+    padding-top: 2px;
+}
+#filters div ul li label {
+    font-size: 17px;
+    margin-left: 4px;
 }
