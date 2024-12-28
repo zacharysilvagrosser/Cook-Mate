@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import Sorting from './Sorting';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 
 function DiscoverSearchBar(props) {
@@ -8,7 +8,7 @@ function DiscoverSearchBar(props) {
     const [searchClicked, setSearchClicked] = useState(false);
 
     const fetchRecipes = async (userInput, offset) => {
-        const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${userInput}&cuisine=${props.cuisine}&diet=${props.diet}&intolerances=${props.intolerances}&excludeIngredients=${props.exclude}&addRecipeInformation=true&occasions=father's day&number=100&offset=${offset}&apiKey=${process.env.REACT_APP_API_KEY}`);
+        const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${userInput}&cuisine=${props.cuisine}&diet=${props.diet}&intolerances=${props.intolerances}&excludeIngredients=${props.exclude}&addRecipeInformation=true&number=100&offset=${offset}&apiKey=${process.env.REACT_APP_API_KEY}`);
         const jsonData = await response.json();
         console.log(jsonData);
         props.setData(jsonData.results);
@@ -29,10 +29,10 @@ function DiscoverSearchBar(props) {
         //const filters = allFilters.join(',');
         console.log('allFilters', allFilters);
         console.log('uncheckedFilters', props.noCuisine);
-        const response = await fetch(`https://api.spoonacular.com/recipes/random?number=100&include-tags=${allFilters}&exclude-tags=${props.noCuisine}&apiKey=${process.env.REACT_APP_API_KEY}`);
+        const response = await fetch(`https://api.spoonacular.com/recipes/random?number=5&include-tags=${allFilters}&exclude-tags=${props.noCuisine}&apiKey=${process.env.REACT_APP_API_KEY}`);
         const jsonData = await response.json();
-        console.log(jsonData);
-        props.setData(jsonData.results);
+        console.log(jsonData.recipes);
+        props.setData(jsonData.recipes);
     }
     return (
         <div id='discover-search-bar'>

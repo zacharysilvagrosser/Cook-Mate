@@ -9,7 +9,6 @@ import Filters from "./Filters";
 import DiscoverSearchBar from "./DiscoverSearchBar";
 import RecipeBox from "./RecipeBox";
 import Pagination from "./Pagination";
-import Sorting from "./Sorting";
 
 function DiscoverRecipes() {
     const [data, setData] = useState(null);
@@ -28,7 +27,7 @@ function DiscoverRecipes() {
                 <Filters setCuisine={setCuisine} setDiet={setDiet} setIntolerances={setIntolerances} setExclude={setExclude} setNoCuisine={setNoCuisine}/>
                 <div id='recipe-box-container'>
                     {data && data.map((item, index) => (
-                        <RecipeBox item={item} key={index}/>
+                        item.analyzedInstructions.length ? <RecipeBox item={item} key={index} data={data}/> : ''
                     ))}
                 </div>
             </div>
