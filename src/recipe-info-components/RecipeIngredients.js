@@ -10,7 +10,6 @@ function RecipeIngredients(props) {
         const formatted = num.toFixed(2);
         return parseFloat(formatted) === num ? num.toString() : formatted;
     }
-    console.log('pp', props.data.extendedIngredients[0].image);
     return (
         <div id='recipe-ingredients'>
             <div id='servings-div'>
@@ -19,17 +18,18 @@ function RecipeIngredients(props) {
             </div>
             <div id='ingredients-list'>
                 <ul>
-                    {props.data.extendedIngredients.map((item, index) => (
+                    {props.data.extendedIngredients && props.data.extendedIngredients.map((item, index) => (
                         <li key={index}>
-                            <p> {item.originalName}</p>
                             <img key={index} src={'https://spoonacular.com/cdn/ingredients_100x100/' + item.image}></img>
                             <div>
+                                <p> {item.name} {item.meta.length ? '(' + item.meta[0] + ')' : ''}</p>
                                 <span>{formatNumber(item.measures.us.amount * (servings / props.data.servings))}</span>
                                 <span> {item.measures.us.unitLong}</span>
                             </div>
                         </li>
                     ))}
                 </ul>
+                {!props.data.extendedIngredients ? <p>The source website didn't share a set of ingredients. View the recipe website <a href={props.data.sourceUrl} target="_blank">here</a></p> : ''}
             </div>
         </div>
     )

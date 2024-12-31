@@ -10,7 +10,7 @@ import DiscoverSearchBar from "./DiscoverSearchBar";
 import RecipeBox from "./RecipeBox";
 import Pagination from "./Pagination";
 
-function DiscoverRecipes() {
+function DiscoverRecipes(props) {
     const [data, setData] = useState(null);
     const [page, setPage] = useState(0);
     const [cuisine, setCuisine] = useState([]);
@@ -25,9 +25,9 @@ function DiscoverRecipes() {
             <DiscoverSearchBar page={page} setPage={setPage} setData={setData} cuisine={cuisine} diet={diet} intolerances={intolerances} exclude={exclude} noCuisine={noCuisine}/>
             <div id='recipe-section-container'>
                 <Filters setCuisine={setCuisine} setDiet={setDiet} setIntolerances={setIntolerances} setExclude={setExclude} setNoCuisine={setNoCuisine}/>
-                <div id='recipe-box-container'>
+                <div className='recipe-box-container'>
                     {data && data.map((item, index) => (
-                        item.analyzedInstructions.length ? <RecipeBox item={item} key={index} data={data}/> : ''
+                        <RecipeBox item={item} key={index} data={data} savedRecipes={props.savedRecipes} setSavedRecipes={props.setSavedRecipes}/>
                     ))}
                 </div>
             </div>

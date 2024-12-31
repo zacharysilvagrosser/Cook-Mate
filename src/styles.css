@@ -1,14 +1,9 @@
 :root {
-    --wine-color: rgb(37, 16, 25);
+    --wine-color: rgb(217, 255, 206);
     --grass-color: rgb(28, 31, 23);
 }
 * {
     margin: 0;
-    color: white;
-}
-#root {
-    background-color: var(--grass-color);
-    /*    background-color: rgb(29, 34, 16);*/
 }
 #nav {
     width: 100%;
@@ -26,6 +21,7 @@
     background-color: var(--wine-color);
 }
 #nav-items a {
+    color: black;
     text-decoration: none;
 }
 
@@ -86,6 +82,15 @@ button, select {
     margin: auto;
     margin-top: 10px;
 }
+#discover-bottom-search-buttons button {
+    border-radius: 6px;
+    transition: .1s;
+}
+#discover-bottom-search-buttons button:hover {
+    transform: translateY(1.5px);
+    background-color: rgb(207, 235, 199);
+    transition: .1s;
+}
 #sorting {
     width: 97%;
     display: flex;
@@ -99,7 +104,7 @@ button, select {
     width: 100%;
     display: flex;
 }
-#recipe-box-container {
+.recipe-box-container {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -108,12 +113,22 @@ button, select {
 .recipe-box {
     width: 18rem;
     padding: 1rem;
+    padding-top: 0;
+    margin-top: 1rem;
+    text-align: center;
     cursor: pointer;
     transition: .3s;
 }
 .recipe-box:hover {
     transform: scale(104%);
     transition: .3s;
+}
+.recipe-box-buttons button {
+    width: 33.3%;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow: 1px 1px 6px black;
 }
 .recipe-box img {
     width: 100%;
@@ -174,6 +189,7 @@ button, select {
 }
 #ingredients-list {
     margin-top: 1rem;
+    text-align: center;
 }
 #ingredients-list ul {
     display: flex;
@@ -181,7 +197,6 @@ button, select {
 }
 #ingredients-list li {
     width: 200px;
-    height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -205,6 +220,9 @@ button, select {
     flex-direction: column;
     align-items: center;
     margin-bottom: 2rem;
+}
+#recipe-instructions p {
+    font-size: 22px;
 }
 
 #filters {
