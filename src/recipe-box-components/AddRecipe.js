@@ -1,3 +1,5 @@
+import {useEffect} from "react";
+
 function AddRecipe(props) {
     // Add recipe to "My Recipes" List
     function addRecipe(recipe) {
@@ -12,6 +14,10 @@ function AddRecipe(props) {
     props.savedRecipes.forEach(recipe => {
         recipeIDs.push(recipe.id);    
     });
+    // update local storage data whenever watch list movies change
+    useEffect(() => {
+        localStorage.setItem('savedRecipesData', JSON.stringify(props.savedRecipes));
+    }, [props.savedRecipes]);
     // Return a button to add or delete the recipe from your "My Recipes" list depending on whether it's already on the list or not
     if (recipeIDs.includes(props.item.id)) {
         return (

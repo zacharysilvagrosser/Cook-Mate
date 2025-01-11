@@ -7,8 +7,10 @@ import DiscoverRecipes from './DiscoverRecipes';
 import GroceryList from './GroceryList';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import RecipeInfo from './RecipeInfo';
+import CreateRecipe from './CreateRecipe';
 
 function App() {
+    const [data, setData] = useState(null);
     // load previous recipes before setting it to an empty array if there are none
     const [savedRecipes, setSavedRecipes] = useState(() => {
         const storedData = localStorage.getItem('savedRecipesData');
@@ -17,12 +19,13 @@ function App() {
 
     return (
         <BrowserRouter>
-        <NavBar />
+        <NavBar savedRecipes={savedRecipes}/>
         <Routes>
-            <Route path="/" element={<MyRecipes savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
-            <Route path="/discoverrecipes" element={<DiscoverRecipes savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
+            <Route path="/" element={<MyRecipes data={data} setData={setData} savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
+            <Route path="/discoverrecipes" element={<DiscoverRecipes data={data} setData={setData} savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
             <Route path="/grocerylist" element={<GroceryList />} />
-            <Route path="/recipeinfo" element={<RecipeInfo />} />
+            <Route path="/recipeinfo" element={<RecipeInfo savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
+            <Route path="/createrecipe" element={<CreateRecipe setData={setData} savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
         </Routes>
         </BrowserRouter>
     );

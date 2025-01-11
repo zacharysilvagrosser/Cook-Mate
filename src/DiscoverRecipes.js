@@ -11,7 +11,6 @@ import RecipeBox from "./RecipeBox";
 import Pagination from "./Pagination";
 
 function DiscoverRecipes(props) {
-    const [data, setData] = useState(null);
     const [page, setPage] = useState(0);
     const [cuisine, setCuisine] = useState([]);
     const [noCuisine, setNoCuisine] = useState([]);
@@ -20,14 +19,14 @@ function DiscoverRecipes(props) {
     const [exclude, setExclude] = useState([]);
 
     return (
-        <div id='discover-container'>
+        <div className='container'>
             <h1>Discover Recipes</h1>
-            <DiscoverSearchBar page={page} setPage={setPage} setData={setData} cuisine={cuisine} diet={diet} intolerances={intolerances} exclude={exclude} noCuisine={noCuisine}/>
+            <DiscoverSearchBar page={page} setPage={setPage} setData={props.setData} cuisine={cuisine} diet={diet} intolerances={intolerances} exclude={exclude} noCuisine={noCuisine}/>
             <div id='recipe-section-container'>
                 <Filters setCuisine={setCuisine} setDiet={setDiet} setIntolerances={setIntolerances} setExclude={setExclude} setNoCuisine={setNoCuisine}/>
                 <div className='recipe-box-container'>
-                    {data && data.map((item, index) => (
-                        <RecipeBox item={item} key={index} data={data} savedRecipes={props.savedRecipes} setSavedRecipes={props.setSavedRecipes}/>
+                    {props.data && props.data.map((item, index) => (
+                        <RecipeBox item={item} key={index} data={props.data} savedRecipes={props.savedRecipes} setSavedRecipes={props.setSavedRecipes}/>
                     ))}
                 </div>
             </div>

@@ -3,17 +3,18 @@ function RecipeDetails(props) {
     const capitalizedOccasions = props.data.occasions.map(word => word.charAt(0).toUpperCase() + word.slice(1));
     const capitalizedDiets = props.data.diets.map(word => word.charAt(0).toUpperCase() + word.slice(1));
 
+    console.log('dawdawd', props.data);
     return (
         <div id='recipe-details'>
             <p>Ready in: {props.data.readyInMinutes} minutes</p>
-            <p>Price per serving: ${(props.data.pricePerServing / 100).toFixed(2)}</p>
-            {props.data.cuisines.length ? <p>Cuisines: {props.data.cuisines.join(', ')}</p> :
+            {props.data.pricePerServing ? <p>Price per serving: ${(props.data.pricePerServing / 100).toFixed(2)}</p> : <p></p>}
+            {props.data.cuisines ? <p>Cuisines: {props.data.cuisines.join(', ')}</p> :
             <p>Cuisines: Global</p>}
-            {props.data.occasions.length ? <p>Occasions: {capitalizedOccasions.join(', ')}</p> :
+            {props.data.occasions ? <p>Occasions: {capitalizedOccasions.join(', ')}</p> :
             <p></p>}
-            {props.data.diets.length ? <p>Diets: {capitalizedDiets.join(', ')}</p> :
+            {props.data.diets ? <p>Diets: {capitalizedDiets.join(', ')}</p> :
             <p></p>}
-            {props.data.dishTypes.length ? <p>Dish Type: {capitalizedDishTypes.join(', ')}</p> :
+            {props.data.dishTypes ? <p>Dish Type: {capitalizedDishTypes.join(', ')}</p> :
             <p></p>}
             <p>{props.data.veryHealthy ? 'Healthy' : ''}</p>
             <p>{props.data.cheap ? 'Cheap' : ''}</p>

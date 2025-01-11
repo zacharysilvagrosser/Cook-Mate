@@ -4,16 +4,20 @@
 // Favorite Recipes
 
 import RecipeBox from "./RecipeBox";
+import {Link} from "react-router-dom";
 
 function MyRecipes(props) {
     return (
-        <div>
-            <p>Save recipes to view them in this section</p>
+        <div className="container">
+            <Link to='/createrecipe'>
+                <button>Create a recipe</button>
+            </Link>
             <div className='recipe-box-container'>
-                {props.savedRecipes.length && props.savedRecipes.map((item, index) => (
+                {props.savedRecipes.map((item, index) => (
                     <RecipeBox item={item} key={index} savedRecipes={props.savedRecipes} setSavedRecipes={props.setSavedRecipes}/>
                 ))}
             </div>
+            {!props.savedRecipes.length && <p>Save recipes to view them in this section</p>}
         </div>
     )
 }

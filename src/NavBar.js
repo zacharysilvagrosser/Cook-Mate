@@ -7,12 +7,12 @@ import {Link} from "react-router-dom";
 
 // 
 
-function NavBar() {
+function NavBar(props) {
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container id='nav'>
                 <Nav id='nav-items'>
-                    <Link to='/'>My Recipes</Link>
+                    <Link to='/'>My Recipes {'(' + props.savedRecipes.length + ')'}</Link>
                     <Link to='/discoverrecipes'>Discover Recipes</Link>
                     <Link to='/grocerylist'>Grocery List</Link>
                 </Nav>

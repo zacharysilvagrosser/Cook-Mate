@@ -20,9 +20,9 @@ function RecipeIngredients(props) {
                 <ul>
                     {props.data.extendedIngredients && props.data.extendedIngredients.map((item, index) => (
                         <li key={index}>
-                            <img key={index} src={'https://spoonacular.com/cdn/ingredients_100x100/' + item.image}></img>
+                            {item.image ? <img src={'https://spoonacular.com/cdn/ingredients_100x100/' + item.image}></img> : ''}
                             <div>
-                                <p> {item.name} {item.meta.length ? '(' + item.meta[0] + ')' : ''}</p>
+                                <p> {item.name} {item.meta ? '(' + item.meta[0] + ')' : ''}</p>
                                 <span>{formatNumber(item.measures.us.amount * (servings / props.data.servings))}</span>
                                 <span> {item.measures.us.unitLong}</span>
                             </div>

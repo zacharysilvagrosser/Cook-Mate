@@ -32,7 +32,7 @@ button, select {
     background-color: var(--wine-color);
 }
 
-#discover-container {
+.container {
     width: 96%;
     margin: auto;
     display: flex;
@@ -41,7 +41,7 @@ button, select {
     justify-content: center;
     text-align: center;
 }
-#discover-container h1 {
+.container h1 {
     margin: 2rem;
     font-size: 3rem;
 }
@@ -242,4 +242,13 @@ button, select {
 #filters div ul li label {
     font-size: 17px;
     margin-left: 4px;
+}
+
+#create-recipe-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#create-recipe-form input {
+    margin-bottom: 1rem;
 }
