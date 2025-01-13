@@ -3,7 +3,10 @@ import IngredientInputs from './create-recipe-components/IngredientInputs';
 import InstructionInputs from './create-recipe-components/InstructionInputs';
 
 function CreateRecipe(props) {
-    const [userRecipeID, setUserRecipeID] = useState(0);
+    const [userRecipeID, setUserRecipeID] = useState(() => {
+        const storedData = localStorage.getItem('savedUserRecipeID');
+        return storedData ? JSON.parse(storedData) : 0;
+    });
     // load previous recipes before setting it to an empty array if there are none
     const [file, setFile] = useState(() => {
         const storedData = localStorage.getItem('savedImages');
@@ -18,17 +21,19 @@ function CreateRecipe(props) {
 
     function submitRecipe() {
         setUserRecipeID(userRecipeID - 1);
-        console.log('ahhhhhh', userRecipeID);
+        localStorage.setItem('savedUserRecipeID', (userRecipeID - 1));
+        console.log('recipe id: ', userRecipeID);
 
         const createdIngredientNames = document.querySelectorAll('.create-ingredient-names');
         const createdIngredientAmounts = document.querySelectorAll('.create-ingredient-amounts');
         const createdIngredientUnits = document.querySelectorAll('.create-ingredient-units');
+        const createdIngredientAisles = document.querySelectorAll('.create-ingredient-aisle');
         const ingredientsArray = [];
-        console.log('nnnnnnnnnnnnnnnn', createdIngredientAmounts[0].value)
         
         for (let i = 0; i < createdIngredientNames.length; i++) {
             const ingredientsObject = {
                 name: createdIngredientNames[i].value,
+                aisle: createdIngredientAisles[i].value,
                 measures: {
                     us: {
                         amount: createdIngredientAmounts[i].value,

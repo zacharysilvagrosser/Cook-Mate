@@ -16,14 +16,18 @@ function App() {
         const storedData = localStorage.getItem('savedRecipesData');
         return storedData ? JSON.parse(storedData) : [];
     });
+    const [groceryListItems, setGroceryListItems] = useState(() => {
+        const storedData = localStorage.getItem('savedGroceryListItems');
+        return storedData ? JSON.parse(storedData) : [];
+    });
 
     return (
         <BrowserRouter>
         <NavBar savedRecipes={savedRecipes}/>
         <Routes>
-            <Route path="/" element={<MyRecipes data={data} setData={setData} savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
+            <Route path="/" element={<MyRecipes data={data} setData={setData} savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes} groceryListItems={groceryListItems} setGroceryListItems={setGroceryListItems} />} />
             <Route path="/discoverrecipes" element={<DiscoverRecipes data={data} setData={setData} savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
-            <Route path="/grocerylist" element={<GroceryList />} />
+            <Route path="/grocerylist" element={<GroceryList groceryListItems={groceryListItems} setGroceryListItems={setGroceryListItems} />} />
             <Route path="/recipeinfo" element={<RecipeInfo savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
             <Route path="/createrecipe" element={<CreateRecipe setData={setData} savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes}/>} />
         </Routes>

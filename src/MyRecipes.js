@@ -14,7 +14,7 @@ function MyRecipes(props) {
             </Link>
             <div className='recipe-box-container'>
                 {props.savedRecipes.map((item, index) => (
-                    <RecipeBox item={item} key={index} savedRecipes={props.savedRecipes} setSavedRecipes={props.setSavedRecipes}/>
+                    <RecipeBox item={item} key={index} savedRecipes={props.savedRecipes} setSavedRecipes={props.setSavedRecipes} groceryListItems={props.groceryListItems} setGroceryListItems={props.setGroceryListItems}/>
                 ))}
             </div>
             {!props.savedRecipes.length && <p>Save recipes to view them in this section</p>}
