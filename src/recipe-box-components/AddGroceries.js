@@ -1,8 +1,6 @@
 import {useState} from "react";
 
 function AddGroceries(props) {
-    const [addedtoGroceries, setAddedToGroceries] = useState(false); // this is getting set to false every time you reload My Recipes
-
     const groceryInfo = [];
     groceryInfo.push(props.item.id);
     props.item.extendedIngredients.forEach(ingredient => {
@@ -15,12 +13,10 @@ function AddGroceries(props) {
 
     function addToList(items) {
         props.setGroceryListItems([...props.groceryListItems, items]);
-        setAddedToGroceries(!addedtoGroceries);
     }
     function deleteFromList(id) {
         props.setGroceryListItems(prevItems => prevItems.filter(recipeList => recipeList[0] !== id));
         //setNamesOnGroceryList(prevItems => prevItems.filter(recipeList => recipeList !== title));
-        setAddedToGroceries(!addedtoGroceries);
     }
     console.log('the id', props.item.id);
     if (props.groceryListItems.some(arr => arr.includes(props.item.id))) {
